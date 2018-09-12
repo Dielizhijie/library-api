@@ -13,7 +13,7 @@ public class BookController {
     public String index(Model model) {
         Book book;
 
-        model.addAttribute("book", "发表");
+        model.addAttribute("book", "菜鸡 ");
         return "manager/book/index";
     }
 
