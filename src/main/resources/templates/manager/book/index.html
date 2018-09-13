@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -160,16 +160,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr role="row" class="odd">
-                                    <td th:text="${book}"></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
+                                <tr role="row" class="odd" th:each="book: ${bookList}">
+                                    <!--<td th:text="${book}"></td>-->
+                                    <!--<td th:text="${book}"></td>-->
+
+                                    <td th:text="${book.id}"></td>
+                                    <td th:text="${book.name}"></td>
+                                    <td th:text="${book.class_id}"></td>
+                                    <td th:text="${book.author}"></td>
+                                    <td th:text="${book.cover}"></td>
+                                    <td th:text="${book.details}"></td>
+                                    <td th:text="${book.publication_date}"></td>
+                                    <td th:text="${book.location}"></td>
+                                    <td th:text="${book.count}"></td>
+                                    <td th:text="${book.borrowing_count}"></td>
+                                    <td th:text="${book.borrowed_user-count}"></td>
+                                    <td th:text="${book.predetermine_count}"></td>
                                     <td class="sorting_1"></td>
                                 </tr>
                                 </tbody>
