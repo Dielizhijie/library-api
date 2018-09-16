@@ -11,12 +11,10 @@ import java.sql.ResultSet;
 public class ManagerDetailController {
     String sql = "SELECT * FROM book";
     DBManager dbManager = new DBManager(sql);
-    //        return dbManager;
     ResultSet result = null;
 
-    @RequestMapping("/detail/index")
+    @RequestMapping("/detail")
     public String ManageDetail(Model model){
-
-        return null;
+        return "manager/detail";
     }
 }

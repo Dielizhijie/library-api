@@ -18,6 +18,6 @@ public class UserDetailController {
     @RequestMapping("/detail")
     public String ManageDetail(Model model){
 
-        return "";
+        return null;
     }
 }

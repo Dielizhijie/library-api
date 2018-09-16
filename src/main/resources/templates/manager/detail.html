@@ -32,7 +32,6 @@
                                 <small>Advanced and full of features</small>
                             </h3>
                         </div>
-                        @foreach($book as $result)
                         <form id="mainform" action="/manager/detail/edit".{{result.id}} method = "POST" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="box-body pad" style="display: block;">
@@ -50,11 +49,12 @@
                                 </div>
                                 <div class="box-footer">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                     <button id="submitButton3" type="submit" class="btn btn-info"
-                                            onclick="confirm('确认修改？')"> 编辑</button></td>
+                                            onclick="confirm('确认修改？')"> 编辑</button>
                                     &emsp;&emsp;&emsp;&emsp;&emsp;
                                 </div>
+                            </div>
                         </form>
-                        @endforeach
+
                     </div>
                     <!-- /.box -->
                 </div>
