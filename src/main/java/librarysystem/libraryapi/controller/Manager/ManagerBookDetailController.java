@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.sql.ResultSet;
 @Controller
 @RequestMapping("/manager")
-public class ManagerStudentController {
+public class ManagerBookDetailController {
     String sql = "SELECT * FROM book";
     DBManager dbManager = new DBManager(sql);
-    //        return dbManager;
     ResultSet result = null;
 
-    @RequestMapping("/student/index")
+    @RequestMapping("/book/index")
     public String ManageDetail(Model model){
 
         return null;

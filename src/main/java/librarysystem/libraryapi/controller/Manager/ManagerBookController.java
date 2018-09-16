@@ -19,7 +19,6 @@ public class ManagerBookController {
     public String index(Model model) {
         String sql = "SELECT * FROM book";
         DBManager dbManager = new DBManager(sql);
-//        return dbManager;
         ResultSet result = null;
         List<Book> bookList = new ArrayList<>();
         try {
