@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:include="/manager/head :: head"></head>
+<head th:include="/manager/common/head :: head"></head>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
@@ -20,11 +20,28 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
+                <div class="col-xs-8">
+                    <!--<div class="checkbox icheck">-->
+                        <!--<label>-->
+                            <!--<input type="checkbox"> Remember Me-->
+                        <!--</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-group" >-->
+                        <select class="btn btn-warning" name="user_type">
+                            <option value="10">用户类型</option>
+                            <option value="0">学生</option>
+                            <option value="1">管理员</option>
+                        </select>
+                    <!--</div>-->
+                </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                 </div>
                 <!-- /.col -->
+            </div>
+            <div class="col-lg-1" style="float: right;">
+
             </div>
         </form>
     </div>
