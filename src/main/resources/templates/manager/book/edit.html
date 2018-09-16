@@ -25,84 +25,56 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-body">
-                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                                <thead>
-                                <tr role="row">
-                                    <th class="sorting"  aria-label="Rendering engine: activate to sort column ascending" >id</th>
-                                    <th>名称</th>
-                                    <th class="sorting"  aria-label="Browser: activate to sort column ascending" >种类</th>
-                                    <th class="sorting"  aria-label="Platform(s): activate to sort column ascending">作者</th>
-                                    <th class="sorting"  aria-label="activate to sort column ascending" >出版日期</th>
-                                    <th class="sorting"  aria-label="activate to sort column ascending">在馆位置</th>
-                                    <th class="sorting"   aria-label="Rendering engine: activate to sort column ascending" >数目</th>
-                                    <th class="sorting"  aria-label="Rendering engine: activate to sort column ascending" >被借数</th>
-                                    <th class="sorting"  aria-label="Rendering engine: activate to sort column ascending" >曾借人数</th>
-                                    <th class="sorting"  aria-label="Rendering engine: activate to sort column ascending" >预定人数</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr role="row" class="odd" th:each="book: ${bookList}">
-                                    <!--<td th:text="${book}"></td>-->
-                                    <!--<td th:text="${book}"></td>-->
-
-                                    <td th:text="${book.id}"></td>
-                                    <td th:text="${book.name}"></td>
-                                    <td th:text="${book.class_id}"></td>
-                                    <td th:text="${book.author}"></td>
-                                    <td th:text="${book.cover}"></td>
-                                    <td th:text="${book.details}"></td>
-                                    <td th:text="${book.publication_date}"></td>
-                                    <td th:text="${book.location}"></td>
-                                    <td th:text="${book.count}"></td>
-                                    <td th:text="${book.borrowing_count}"></td>
-                                    <td th:text="${book.borrowed_user-count}"></td>
-                                    <td th:text="${book.predetermine_count}"></td>
-                                    <td class="sorting_1"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                            </div>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button previous disabled" id="example1_previous">
-                                                    <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">
-                                                        Previous
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button active">
-                                                    <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">
-                                                        1
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button next" id="example1_next">
-                                                    <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">
-                                                        Next
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <h3 class="box-title">图书
+                                <small>Advanced and full of features</small>
+                            </h3>
                         </div>
-                        <!-- /.box-body -->
+                        @foreach($book as $result)
+                        <form id="mainform" action="{{url('#')}}" method = "POST" enctype="multipart/form-data">
+                            {{csrf_field()}}
+                            <div class="box-body pad" style="display: block;">
+                                <div class="form-group" >
+                                    <label for="noticeTitle">图书标题</label>
+                                    <input type="text" name = "name" class="form-control" id="noticeTitle" value="{{$result -> name}}">
+                                </div>
+                                <div class="form-group" >
+                                    <label for="noticeTitle">图书作者</label>
+                                    <input type="text" name = "author" class="form-control" id="noticeTitle" value="{{$result -> author}}">
+                                </div>
+                                <div class="form-group" >
+                                    <label for="noticeTitle">图书出版日期</label>
+                                    <input type="text" name = "publication_date" class="form-control" id="noticeTitle" value="{{$result -> publication_date}}">
+                                </div>
+                                <div class="form-group" >
+                                    <label for="noticeTitle">图书在馆位置</label>
+                                    <input type="text" name = "location" class="form-control" id="noticeTitle" value="{{$result -> location}}">
+                                </div>
+                                <div class="form-group" >
+                                    <label for="noticeTitle">图书数目</label>
+                                    <input type="text" name = "count" class="form-control" id="noticeTitle" value="{{$result -> count}}">
+                                </div>
+
+                                <form>
+                                    <label for="noticeTitle">公告内容</label>
+                                    <textarea  name="details"
+                                               placeholder="内容简介尽量简洁明了"
+                                               style="width: 100%; height: 250px; font-size: 14px; line-height: 18px; border: 1px solid #2241dd; padding: 10px;">{{ $result -> details}}</textarea>
+                                </form>
+                                <div class="box-footer">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <button id="submitButton3" type="submit" onclick="foo()" class="btn btn-primary">确认修改</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <button id="submitButton" type="button" class="btn btn-primary"  onclick="javascript:history.back()">取消</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                </div>
+                        </form>
+                        @endforeach
                     </div>
                     <!-- /.box -->
                 </div>
-                <!-- /.col -->
+                <!-- /.col-->
             </div>
-            <!-- /.row -->
+            <!-- ./row -->
         </section>
     </div>
     <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
