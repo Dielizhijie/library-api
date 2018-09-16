@@ -1,4 +1,4 @@
-package librarysystem.libraryapi.controller;
+package librarysystem.libraryapi.controller.Manager;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import librarysystem.libraryapi.DBManager;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/manager")
-public class BookController {
+public class ManagerBookController {
 
     @RequestMapping("/book/index")
     public String index(Model model) {
