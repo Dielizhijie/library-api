@@ -12,12 +12,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                图书
-                <small>编辑</small>
+                学生信息
+                <small>详情</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a><i class="fa fa-th"></i> Home</a></li>
-                <li><a>图书编辑</a></li>
+                <li><a>学生信息</a></li>
                 <!--<li class="active">Data tables</li>-->
             </ol>
         </section>
@@ -28,44 +28,30 @@
                 <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header">
-                            <h3 class="box-title">图书
+                            <h3 class="box-title">学生
                                 <small>Advanced and full of features</small>
                             </h3>
                         </div>
                         @foreach($book as $result)
-                        <form id="mainform" action="{{url('#')}}" method = "POST" enctype="multipart/form-data">
+                        <form id="mainform" action="/manager/detail/edit".{{result.id}} method = "POST" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="box-body pad" style="display: block;">
                                 <div class="form-group" >
-                                    <label for="noticeTitle">图书标题</label>
-                                    <input type="text" name = "name" class="form-control"  value="{{$result -> name}}">
+                                    <th><label>工号：</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <td>{{$result -> work_id}}</td>
                                 </div>
                                 <div class="form-group" >
-                                    <label for="noticeTitle">图书作者</label>
-                                    <input type="text" name = "author" class="form-control"  value="{{$result -> author}}">
+                                    <label for="noticeTitle">name</label>
+                                    <input type="text" name = "name" class="form-control"  id="noticeTitle" value="{{$result -> name}}">
                                 </div>
                                 <div class="form-group" >
-                                    <label for="noticeTitle">图书出版日期</label>
-                                    <input type="text" name = "publication_date" class="form-control"  value="{{$result -> publication_date}}">
+                                    <label for="noticeTitle">email</label>
+                                    <input type="email" name = "email" class="form-control"  value="{{$result -> user_id}}">
                                 </div>
-                                <div class="form-group" >
-                                    <label for="noticeTitle">图书在馆位置</label>
-                                    <input type="text" name = "location" class="form-control"  value="{{$result -> location}}">
-                                </div>
-                                <div class="form-group" >
-                                    <label for="noticeTitle">图书数目</label>
-                                    <input type="text" name = "count" class="form-control" id="noticeTitle" value="{{$result -> count}}">
-                                </div>
-
-                                <form>
-                                    <label for="noticeTitle">公告内容</label>
-                                    <textarea  name="details"
-                                               placeholder="内容简介尽量简洁明了"
-                                               style="width: 100%; height: 250px; font-size: 14px; line-height: 18px; border: 1px solid #2241dd; padding: 10px;">{{ $result -> details}}</textarea>
-                                </form>
                                 <div class="box-footer">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                                    <button id="submitButton3" type="submit" onclick="foo()" class="btn btn-primary">确认修改</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                                    <button id="submitButton" type="button" class="btn btn-primary"  onclick="javascript:history.back()">取消</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <button id="submitButton3" type="submit" class="btn btn-info"
+                                            onclick="confirm('确认修改？')"> 编辑</button></td>
+                                    &emsp;&emsp;&emsp;&emsp;&emsp;
                                 </div>
                         </form>
                         @endforeach
