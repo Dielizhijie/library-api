@@ -1,5 +1,20 @@
 package librarysystem.libraryapi.controller.Manager;
 
-public class ManagerStudentController {
+import librarysystem.libraryapi.DBManager;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.sql.ResultSet;
+@RequestMapping("/manager")
+public class ManagerStudentController {
+    String sql = "SELECT * FROM book";
+    DBManager dbManager = new DBManager(sql);
+    //        return dbManager;
+    ResultSet result = null;
+
+    @RequestMapping("/student/index")
+    public String ManageDetail(Model model){
+
+        return null;
+    }
 }

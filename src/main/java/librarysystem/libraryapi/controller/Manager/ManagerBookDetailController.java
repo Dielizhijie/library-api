@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.ResultSet;
+
 @RequestMapping("/manager")
-public class ManagerDetailController {
+public class ManagerBookDetailController {
     String sql = "SELECT * FROM book";
     DBManager dbManager = new DBManager(sql);
-    //        return dbManager;
     ResultSet result = null;
 
     @RequestMapping("/detail/index")
