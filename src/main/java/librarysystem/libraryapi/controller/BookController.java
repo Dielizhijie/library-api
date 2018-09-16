@@ -1,5 +1,6 @@
 package librarysystem.libraryapi.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import librarysystem.libraryapi.DBManager;
 import librarysystem.libraryapi.Bean.Book;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ public class BookController {
     public String index(Model model) {
         String sql = "SELECT * FROM book";
         DBManager dbManager = new DBManager(sql);
+//        return dbManager;
         ResultSet result = null;
         List<Book> bookList = new ArrayList<>();
         try {
@@ -43,7 +45,7 @@ public class BookController {
         } catch (Exception e) {
 
         }
-        model.addAttribute("book","我是一本好书");
+//        model.addAttribute("book","我是一本好书");
         model.addAttribute("bookList", bookList);
         return "manager/book/index";
     }
