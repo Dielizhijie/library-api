@@ -14,9 +14,9 @@ public class ManagerStudentController {
     //        return dbManager;
     ResultSet result = null;
 
-    @RequestMapping("/student/index")
+    @RequestMapping("/student")
     public String ManageDetail(Model model){
 
-        return null;
+        return "manager/student";
     }
 }

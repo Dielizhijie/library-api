@@ -16,6 +16,6 @@ public class ManagerBookDetailController {
     @RequestMapping("/book/index")
     public String ManageDetail(Model model){
 
-        return null;
+        return "manager/book/edit";
     }
 }
