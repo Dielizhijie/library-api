@@ -1,4 +1,4 @@
-package librarysystem.libraryapi.model;
+package librarysystem.libraryapi.Bean;
 
 public class Student {
     public int id;//学生id
@@ -11,5 +11,4 @@ public class Student {
     public int card ;//学生结束资格，0为已经被取消资格
     public int credit;//学生信誉度，0为没有过期未还的书
     public String studentID;
-
 }
