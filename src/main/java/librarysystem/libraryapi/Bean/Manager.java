@@ -6,4 +6,14 @@ public class Manager {
     public String user_id;//管理员账号
     public String password;//管理员密码
     public String work_id;//职工号
+
+    public final static Manager instance = new Manager();
+
+    private Manager() {
+
+    }
+
+    public static Manager getInstance() {
+        return instance;
+    }
 }

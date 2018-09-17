@@ -13,7 +13,7 @@ public class ManagerBookDetailController {
     DBManager dbManager = new DBManager(sql);
     ResultSet result = null;
 
-    @RequestMapping("/book/index")
+    @RequestMapping("/book/detail")
     public String ManageDetail(Model model){
 
         return "manager/book/edit";

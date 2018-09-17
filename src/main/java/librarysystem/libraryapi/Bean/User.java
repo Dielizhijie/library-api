@@ -10,9 +10,10 @@ public class User {
     public int grade;//学生年级
     public int card;//学生结束资格，0为已经被取消资格
     public int credit;//学生信誉度，0为没有过期未还的书
-    public String studentID;
+    public String user_id;
+    public String password;
 
-    private final static User instance = new User();
+    public final static User instance = new User();
 
     private User() {
 

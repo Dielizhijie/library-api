@@ -1,5 +1,7 @@
 package librarysystem.libraryapi.controller.User;
 
+import librarysystem.libraryapi.Bean.Manager;
+import librarysystem.libraryapi.Bean.User;
 import librarysystem.libraryapi.DBManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,15 @@ public class UserDetailController {
 
     @RequestMapping("/detail")
     public String ManageDetail(Model model){
-
-        return null;
+        model.addAttribute("name", User.instance.name);
+        model.addAttribute("class_id", User.instance.user_id);
+        model.addAttribute("phone",User.getInstance().phone);
+        model.addAttribute("academy",User.getInstance().academy);
+        model.addAttribute("major",User.getInstance().major);
+        model.addAttribute("sex",User.getInstance().sex);
+        model.addAttribute("grade",User.getInstance().grade);
+        model.addAttribute("card",User.getInstance().card);
+        model.addAttribute("credit",User.getInstance().credit);
+        return "student/detail";
     }
 }

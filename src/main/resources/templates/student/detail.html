@@ -32,45 +32,56 @@
                                 <small>Advanced and full of features</small>
                             </h3>
                         </div>
-                        @foreach($book as $result)
+
                         <form id="mainform" action="{{url('#')}}" method = "POST" enctype="multipart/form-data">
-                            {{csrf_field()}}
                             <div class="box-body pad" style="display: block;">
                                 <div class="form-group" >
-                                    <label for="noticeTitle">学号</label>
-                                    <input type="text" name = "name" class="form-control"  value="{{$result -> name}}">
+                                    <th><label>学号：</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <td th:text="${user_id}"></td>
+                                    <!--<label for="noticeTitle">学号</label>-->
+                                    <!--<input type="text" name = "name" class="form-control"  value="{{$result -> name}}">-->
                                 </div>
                                 <div class="form-group" >
-                                    <label for="noticeTitle">name</label>
-                                    <input type="text" name = "author" class="form-control"  value="{{$result -> author}}">
+                                    <th><label>姓名：</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <td th:text="${name}"></td>
+                                    <!--<label for="noticeTitle">name</label>-->
+                                    <!--<input type="text" name = "author" class="form-control"  value="{{$result -> author}}">-->
                                 </div>
                                 <div class="form-group" >
-                                    <label for="noticeTitle">电话</label>
-                                    <input type="text" name = "publication_date" class="form-control"  value="{{$result -> publication_date}}">
+                                    <th><label>电话：</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <td th:text="${phone}"></td>
+                                    <!--<label for="noticeTitle">电话</label>-->
+                                    <!--<input type="text" name = "publication_date" class="form-control"  value="{{$result -> publication_date}}">-->
                                 </div>
                                 <div class="form-group" >
-                                    <label for="noticeTitle">学院</label>
-                                    <input type="text" name = "location" class="form-control"  value="{{$result -> location}}">
+                                    <th><label>学院：</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <td th:text="${academy}"></td>
+                                    <!--<label for="noticeTitle">学院</label>-->
+                                    <!--<input type="text" name = "location" class="form-control"  value="{{$result -> location}}">-->
                                 </div>
                                 <div class="form-group" >
-                                    <label for="noticeTitle">专业</label>
-                                    <input type="text" name = "count" class="form-control"  value="{{$result -> count}}">
+                                    <th><label>专业：</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <td th:text="${major}"></td>
+                                    <!--<label for="noticeTitle">专业</label>-->
+                                    <!--<input type="text" name = "count" class="form-control"  value="{{$result -> count}}">-->
                                 </div>
                                 <div class="form-group" >
-                                    <label for="noticeTitle">性别</label>
-                                    <input type="text" name = "count" class="form-control" id="noticeTitle" value="{{$result -> count}}">
+                                    <th><label>性别：</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <td th:text="${sex}"></td>
+                                    <!--<label for="noticeTitle">性别</label>-->
+                                    <!--<input type="text" name = "count" class="form-control" id="noticeTitle" value="{{$result -> count}}">-->
                                 </div>
-                                <form>
-                                    <label for="noticeTitle">公告内容</label>
-                                    <textarea  name="details"
-                                               placeholder="内容简介尽量简洁明了"
-                                               style="width: 100%; height: 250px; font-size: 14px; line-height: 18px; border: 1px solid #2241dd; padding: 10px;">{{ $result -> details}}</textarea>
-                                </form>
+                                <!--<form>-->
+                                    <!--<label for="noticeTitle">公告内容</label>-->
+                                    <!--<textarea  name="details"-->
+                                               <!--placeholder="内容简介尽量简洁明了"-->
+                                               <!--style="width: 100%; height: 250px; font-size: 14px; line-height: 18px; border: 1px solid #2241dd; padding: 10px;">{{ $result -> details}}</textarea>-->
+                                <!--</form>-->
                                 <div class="box-footer">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                     <button id="submitButton3" type="submit" onclick="foo()" class="btn btn-primary">确认修改</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                 </div>
+                            </div>
                         </form>
-                        @endforeach
                     </div>
                     <!-- /.box -->
                 </div>
