@@ -25,6 +25,7 @@ public class ManagerStudentController {
             result = dbManager.preparedStatement.executeQuery();
             while (result.next()){
                 Student student = new Student();
+                student.id = Integer.valueOf(result.getString("id"));
                 student.name = result.getString("name");
                 student.phone = result.getString("phone");
                 student.user_id = result.getString("user_id");

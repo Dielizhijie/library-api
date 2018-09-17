@@ -37,7 +37,7 @@ public class LogInController {
             //学生
             String sql = "SELECT password FROM user where user_id = " + userName + ";";
             DBManager dbManager = new DBManager(sql);
-            ResultSet result = null;
+            ResultSet result;
 
             try {
                 String DBpassword = null;
@@ -51,12 +51,12 @@ public class LogInController {
                     getUserDetail(userName, 0);
                     return "redirect:/student/detail";
                 } else {//这还缺少一个提醒账号密码错误
-                    System.out.println("错了");
+                    popAlert(response,"密码错误");
                 }
             } catch (Exception e) {
-                System.out.println("e错了");
+                popAlert(response,"账号或账号类型错误");
             }
-        } else {
+        } else if (type == 1){
             String sql = "SELECT password FROM manager where user_id = " + userName + ";";
             DBManager dbManager = new DBManager(sql);
             ResultSet result = null;
@@ -72,16 +72,34 @@ public class LogInController {
                     getUserDetail(userName, 1);
                     return "redirect:/manager/detail";
                 } else {
-                    System.out.println("e1错了");
+                    popAlert(response,"密码错误");
                 }
 
             } catch (Exception e) {
-                System.out.println("e2错了");
+                popAlert(response,"账号或账号类型错误");
             }
+        }else {
+            popAlert(response,"未输入用户类型");
         }
         return "/login";
     }
 
+    //当发生意外的时候弹出提示
+    private void popAlert(HttpServletResponse response, String string) {
+        try {
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=utf-8");
+            response.setHeader("content-type","text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.print("<script>alert('" + string + "'); window.location='loginPage' </script>");
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+
+        }
+    }
+
+    //当验证用户账号密码成功的时候把用户的个人信息存储下来
     private void getUserDetail(String userName, int type) {
         if (type == 0) {
             String sql = "SELECT * FROM user where user_id = " + userName + ";";
