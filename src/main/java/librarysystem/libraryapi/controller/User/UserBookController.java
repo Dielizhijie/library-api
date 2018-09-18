@@ -14,8 +14,8 @@ public class UserBookController {
     //        return dbManager;
     ResultSet result = null;
 
-    @RequestMapping("/index")
+    @RequestMapping("/book")
     public String UserBook(Model model){
-        return "student/index";
+        return "student/book";
     }
 }

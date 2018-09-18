@@ -12,5 +12,4 @@ public class Student {
     public int credit;//学生信誉度，0为没有过期未还的书
     public String user_id;
     public String password;
-
 }

@@ -20,7 +20,7 @@ public class UserDetailController {
     @RequestMapping("/detail")
     public String ManageDetail(Model model){
         model.addAttribute("name", User.instance.name);
-        model.addAttribute("class_id", User.instance.user_id);
+        model.addAttribute("user_id", User.instance.user_id);
         model.addAttribute("phone",User.getInstance().phone);
         model.addAttribute("academy",User.getInstance().academy);
         model.addAttribute("major",User.getInstance().major);

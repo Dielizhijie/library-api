@@ -12,12 +12,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                图书
+                学生
                 <small>管理</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a><i class="fa fa-th"></i> Home</a></li>
-                <li><a>图书管理</a></li>
+                <li><a>学生管理</a></li>
                 <!--<li class="active">Data tables</li>-->
             </ol>
         </section>
@@ -48,16 +48,15 @@
                                 <tbody>
                                 <tr role="row" class="odd" th:each="student: ${studentList}">
                                     <td th:text="${student.id}"></td>
-                                    <td th:text="${book.name}"></td>
-                                    <td th:text="${book.class_id}"></td>
-                                    <td th:text="${book.author}"></td>
-                                    <td th:text="${book.publication_date}"></td>
-                                    <td th:text="${book.location}"></td>
-                                    <td th:text="${book.count}"></td>
-                                    <!--<td th:text="${book.cover}"></td>-->
-                                    <td th:text="${book.borrowing_count}"></td>
-                                    <td th:text="${book.borrowed_user_count}"></td>
-                                    <td th:text="${book.predetermine_count}"></td>
+                                    <td th:text="${student.name}"></td>
+                                    <td th:text="${sutdent.user_id}"></td>
+                                    <td th:text="${student.phone}"></td>
+                                    <td th:text="${student.academy}"></td>
+                                    <td th:text="${student.major}"></td>
+                                    <td th:text="${student.sex}"></td>
+                                    <td th:text="${student.grade}"></td>
+                                    <td th:text="${student.card}"></td>
+                                    <td th:text="${student.credit}"></td>
                                     <td><button type="button" class="btn btn-warning" href="#">编辑</button></td>
                                     <td><button type="button" class="btn btn-danger" onclick="if(confirm('确认删除这本书？'))location.href = '#'">删除</button></td>
                                 </tr>
