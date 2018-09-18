@@ -1,5 +1,6 @@
 package librarysystem.libraryapi.Bean;
 
+//这里使用了单例
 public class User {
     public int id;//学生id
     public String name;//学生姓名
@@ -13,13 +14,60 @@ public class User {
     public String user_id;
     public String password;
 
-    public final static User instance = new User();
+    private final static User instance = new User();
 
     private User() {
 
     }
 
     public static User getInstance() {
+        return instance;
+    }
+
+    //这里使用了建造者模式
+    public User setID(int id){
+        this.id = id;
+        return instance;
+    }
+
+    public User setName (String name){
+        this.name = name;
+        return instance;
+    }
+    public User setPhone (String phone){
+        this.phone = phone;
+        return instance;
+    }
+    public User setUserID (String user_id){
+        this.user_id = user_id;
+        return instance;
+    }
+    public User setPassword (String password){
+        this.password = password;
+        return instance;
+    }
+    public User setAcademy (String academy){
+        this.academy = academy;
+        return instance;
+    }
+    public User setMajor (String major){
+        this.major = major;
+        return instance;
+    }
+    public User setSex (int sex){
+        this.sex = sex;
+        return instance;
+    }
+    public User setGrade (int Grade){
+        this.grade = grade;
+        return instance;
+    }
+    public User setCard (int card){
+        this.phone = phone;
+        return instance;
+    }
+    public User setCredit (int credit){
+        this.credit = credit;
         return instance;
     }
 }

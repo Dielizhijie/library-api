@@ -1,6 +1,6 @@
 package librarysystem.libraryapi.controller.User;
 
-import librarysystem.libraryapi.DBManager;
+import librarysystem.libraryapi.controller.tool.DBManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class UserBookController {
     ResultSet result = null;
 
     @RequestMapping("/book")
-    public String UserBook(Model model){
+    public String userBook(Model model){
         return "student/book";
     }
 }
