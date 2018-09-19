@@ -12,15 +12,6 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-<<<<<<< HEAD
-                个人信息
-                <small>Preview page</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li>HOME</li>
-                <li class="active">个人</li>
-                <li class="active">编辑</li>
-=======
                 管理员信息
                 <small>详情</small>
             </h1>
@@ -28,59 +19,15 @@
                 <li><a><i class="fa fa-th"></i> Home</a></li>
                 <li><a>管理员信息</a></li>
                 <!--<li class="active">Data tables</li>-->
->>>>>>> c3afbb611be342daaa9f38589936ef95857a0e8a
             </ol>
         </section>
+
+        <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header">
-<<<<<<< HEAD
-                            <h3 class="box-title">个人
-                                <small>Advanced and full of features</small>
-                            </h3>
-                        </div>
-                        @foreach($student as $result)
-                        <form id="mainform" action="{{url('/student/edit/')}}" method = "POST" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="col-sm-6" style="float: right;">
-                                <div class="input-group input-group-sm" style="width: 500px;">
-                                    <div class="input-group-btn">
-                                        <button id="submitButton3" type="submit" class="btn btn-info"
-                                                onclick="confirm('确认修改？')"> 编辑</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-body pad" style="display: block;">
-                                <div class="form-group" >
-                                    <th><label for="noticeTitle">学号</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
-                                    <td>{{$result -> user_id}}</td>
-                                </div>
-                                <div class="form-group" >
-                                    <label for="noticeTitle">name</label>
-                                    <input type="text" name = "name" class="form-control" id="noticeTitle" value="{{$result -> name}}">
-                                </div>
-                                <div class="form-group" >
-                                    <label for="noticeTitle">password</label>
-                                    <input type="password" name = "password" class="form-control" id="noticeTitle" value="{{$result -> password}}">
-                                </div>
-                                <div class="form-group" >
-                                    <label for="noticeTitle">电话</label>
-                                    <input type="text" name = "phone" class="form-control" id="noticeTitle" value="{{$result -> phone}}">
-                                </div>
-                                <div class="form-group" >
-                                    <label for="noticeTitle">学院</label>
-                                    <input type="text" name = "academy" class="form-control" id="noticeTitle" value="{{$result -> academy}}">
-                                </div>
-                                <div class="form-group" >
-                                    <label for="noticeTitle">专业</label>
-                                    <input type="text" name = "major" class="form-control" id="noticeTitle" value="{{$result -> major}}">
-                                </div>
-                            </div>
-                        </form>
-                        @endforeach
-=======
                             <h3 class="box-title">管理员
                                 <small>manager</small>
                             </h3>
@@ -106,77 +53,14 @@
                                 </div>
                             </div>
                         </form>
->>>>>>> c3afbb611be342daaa9f38589936ef95857a0e8a
 
                     </div>
                     <!-- /.box -->
-                </div>
-
-                <div class="col-md-8">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">已借书籍</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table class="table">
-                                <tbody><tr>
-                                    <th>书名</th>
-                                    <th>作者</th>
-                                    <th>还书</th>
-                                </tr>
-                                @foreach($borrow as $result)
-                                <tr>
-                                    <td>{{$result -> name}}</td>
-                                    <td>{{$result ->author}}</td>
-                                    <td>
-                                        <a href="{{url('/student/book/borrow/'.$result->id)}}" ><button type="button" class="btn btn-warning">还书</button></a></td>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody></table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">预定书籍</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table class="table">
-                                <tbody><tr>
-                                    <th>书名</th>
-                                    <th>作者</th>
-                                    <th>可借数</th>
-                                    <th>借书</th>
-                                    <th>取消</th>
-                                </tr>
-                                @foreach($predetermine as $result)
-                                <tr>
-                                    <td>{{$result -> name}}</td>
-                                    <td>{{$result -> author}}</td>
-                                    <td>{{$result -> count - $result -> borrowing_count}}</td>
-                                    <td>
-                                        <a href="{{url('/student/book/borrow/'.$result->id)}}" ><button type="button" class="btn btn-info">借阅</button></a></td>                                    </td>
-                                    <td>
-                                        <a href="{{url('/student/book/cancel/'.$result->id)}}" ><button type="button" class="btn btn-danger">取消</button></a></td>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody></table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
                 </div>
                 <!-- /.col-->
             </div>
             <!-- ./row -->
         </section>
-
-
     </div>
     <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
 </div>
