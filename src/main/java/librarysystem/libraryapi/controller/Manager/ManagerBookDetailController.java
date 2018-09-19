@@ -62,17 +62,17 @@ public class ManagerBookDetailController {
         String newBorrowingCount = request.getParameter("borrowing_count");
         String newBorrowedUserCount = request.getParameter("borrowed_user_count");
         String newPredetermineCount = request.getParameter("predetermine_count");
-        String sql = "Update manager set name = '" + newName
-                + "', class_id = '" + newClassID
+        String sql = "Update book set name = '" + newName
+//                + "', class_id = '" + newClassID//
                 + "', author = '" + newAuthor
                 + "', details = '" + newDetails
-                + "', cover = '" + newCover
+//                + "', cover = '" + newCover//
                 + "', publication_date = '" + newPublicationDate
                 + "', location = '" + newLocation
                 + "', count = '" + newCount
-                + "', borrowing_count = '" + newBorrowingCount
-                + "', borrowed_user_count = '" + newBorrowedUserCount
-                + "', predetermine_count = '" + newPredetermineCount
+//                + "', borrowing_count = '" + newBorrowingCount//
+//                + "', borrowed_user_count = '" + newBorrowedUserCount//
+//                + "', predetermine_count = '" + newPredetermineCount//
                 + "' where id = " + ID + ";";
         try {
             DBManager dbManager = new DBManager(sql);
@@ -82,6 +82,6 @@ public class ManagerBookDetailController {
         } catch (Exception e) {
             ErrorAlert.popAlert(response, "数据库访问出错，修改失败");
         }
-        return null;
+        return "redirect:/manager/book/index";
     }
 }
