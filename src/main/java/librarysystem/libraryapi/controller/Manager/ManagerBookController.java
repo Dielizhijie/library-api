@@ -17,10 +17,10 @@ public class ManagerBookController {
     @RequestMapping("/book/index")
     public String index(Model model) {
         String sql = "SELECT * FROM book";
-        DBManager dbManager = new DBManager(sql);
-        ResultSet result = null;
         List<Book> bookList = new ArrayList<>();
         try {
+            DBManager dbManager = new DBManager(sql);
+            ResultSet result = null;
             result = dbManager.preparedStatement.executeQuery();
             while (result.next()) {
                 Book book = new Book();

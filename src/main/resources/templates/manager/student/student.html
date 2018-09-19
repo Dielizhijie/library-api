@@ -46,20 +46,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr role="row" class="odd" th:each="student: ${studentList}">
-                                    <td th:text="${student.id}"></td>
-                                    <td th:text="${student.name}"></td>
-                                    <td th:text="${sutdent.user_id}"></td>
-                                    <td th:text="${student.phone}"></td>
-                                    <td th:text="${student.academy}"></td>
-                                    <td th:text="${student.major}"></td>
-                                    <td th:text="${student.sex}"></td>
-                                    <td th:text="${student.grade}"></td>
-                                    <td th:text="${student.card}"></td>
-                                    <td th:text="${student.credit}"></td>
-                                    <td><button type="button" class="btn btn-warning" href="#">编辑</button></td>
-                                    <td><button type="button" class="btn btn-danger" onclick="if(confirm('确认删除这本书？'))location.href = '#'">删除</button></td>
-                                </tr>
+                                <form action = "">
+                                    <tr role="row" class="odd" th:each="student: ${studentList}">
+                                        <td th:text="${student.id}"></td>
+                                        <td th:text="${student.name}"></td>
+                                        <td th:text="${student.user_id}"></td>
+                                        <td th:text="${student.phone}"></td>
+                                        <td th:text="${student.academy}"></td>
+                                        <td th:text="${student.major}"></td>
+                                        <td th:text="${student.sex}"></td>
+                                        <td th:text="${student.grade}"></td>
+                                        <td th:text="${student.card}"></td>
+                                        <td th:text="${student.credit}"></td>
+                                        <td><button type="button" class="btn btn-warning" href="#">编辑</button></td>
+                                        <td><button type="button" class="btn btn-danger" onclick="if(confirm('确认删除这本书？'))location.href = '#'">删除</button></td>
+                                    </tr>
+                                </form>
+
                                 </tbody>
                             </table>
                             </div>

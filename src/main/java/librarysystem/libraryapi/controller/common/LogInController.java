@@ -33,10 +33,11 @@ public class LogInController {
         if (type == 0) {
             //学生
             String sql = "SELECT password FROM user where user_id = " + userName + ";";
-            DBManager dbManager = new DBManager(sql);
-            ResultSet result;
+
 
             try {
+                DBManager dbManager = new DBManager(sql);
+                ResultSet result;
                 String DBpassword = null;
                 result = dbManager.preparedStatement.executeQuery();
                 while (result.next()) {
@@ -55,9 +56,10 @@ public class LogInController {
             }
         } else if (type == 1){
             String sql = "SELECT password FROM manager where user_id = " + userName + ";";
-            DBManager dbManager = new DBManager(sql);
-            ResultSet result = null;
+
             try {
+                DBManager dbManager = new DBManager(sql);
+                ResultSet result = null;
                 String DBpassword = null;
                 result = dbManager.preparedStatement.executeQuery();
                 while (result.next()) {
@@ -86,46 +88,9 @@ public class LogInController {
     //当验证用户账号密码成功的时候把用户的个人信息存储下来
     private void getUserDetail(String userName, int type) {
         if (type == 0) {
-            String sql = "SELECT * FROM user where user_id = " + userName + ";";
-            DBManager dbManager = new DBManager(sql);
-            ResultSet result = null;
-            try {
-                result = dbManager.preparedStatement.executeQuery();
-                while (result.next()) {
-                    User.getInstance().setName(result.getString("name"))
-                            .setUserID(result.getString("user_id"))
-                            .setPassword(result.getString("password"))
-                            .setPhone(result.getString("phone"))
-                            .setAcademy(result.getString("academy"))
-                            .setMajor(result.getString("major"))
-                            .setGrade(Integer.parseInt(result.getString("grade")))
-                            .setSex(Integer.parseInt(result.getString("sex")))
-                            .setCard(Integer.parseInt(result.getString("card")))
-                            .setCredit(Integer.parseInt(result.getString("credit")));
-                }
-                result.close();
-                dbManager.close();
-            } catch (Exception e) {
-
-            }
+            Manager.getInstance().updateData(userName);
         } else {
-            String sql = "SELECT * FROM manager where user_id = " + userName + ";";
-            DBManager dbManager = new DBManager(sql);
-            ResultSet result = null;
-            try {
-                result = dbManager.preparedStatement.executeQuery();
-                while (result.next()) {
-                    Manager.getInstance().setName(result.getString("name"))
-                            .setUserID(result.getString("user_id"))
-                            .setPassword(result.getString("password"))
-                            .setWorkID(result.getString("work_id"));
-                }
-                result.close();
-                dbManager.close();
-            } catch (Exception e) {
-
-            }
+            User.getInstance().updateData(userName);
         }
-
     }
 }

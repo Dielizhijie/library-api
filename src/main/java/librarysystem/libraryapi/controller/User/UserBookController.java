@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 @RequestMapping("/student")
 public class UserBookController {
     String sql = "SELECT * FROM book";
-    DBManager dbManager = new DBManager(sql);
-    //        return dbManager;
-    ResultSet result = null;
+//    DBManager dbManager = new DBManager(sql);
+//    //        return dbManager;
+//    ResultSet result = null;
 
     @RequestMapping("/book")
     public String userBook(Model model){

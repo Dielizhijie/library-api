@@ -1,5 +1,9 @@
 package librarysystem.libraryapi.Bean;
 
+import librarysystem.libraryapi.controller.tool.DBManager;
+
+import java.sql.ResultSet;
+
 //这里使用了单例
 public class User {
     public int id;//学生id
@@ -29,7 +33,6 @@ public class User {
         this.id = id;
         return instance;
     }
-
     public User setName (String name){
         this.name = name;
         return instance;
@@ -69,5 +72,40 @@ public class User {
     public User setCredit (int credit){
         this.credit = credit;
         return instance;
+    }
+
+    public void onLogout (){
+        User.getInstance().setName(null)
+                .setID(0)
+                .setUserID(null)
+                .setPhone(null)
+                .setUserID(null)
+                .setPassword(null)
+                .setAcademy(null)
+                .setMajor(null)
+                .setSex(0)
+                .setGrade(0)
+                .setCard(0)
+                .setCredit(0);
+    }
+    public void updateData(String userName){
+        String sql = "SELECT * FROM manager where user_id = " + userName + ";";
+
+        try {
+            DBManager dbManager = new DBManager(sql);
+            ResultSet result = null;
+            result = dbManager.preparedStatement.executeQuery();
+            while (result.next()) {
+                Manager.getInstance().setName(result.getString("name"))
+                        .setID(Integer.valueOf(result.getString("id")))
+                        .setUserID(result.getString("user_id"))
+                        .setPassword(result.getString("password"))
+                        .setWorkID(result.getString("work_id"));
+            }
+            result.close();
+            dbManager.close();
+        } catch (Exception e) {
+
+        }
     }
 }

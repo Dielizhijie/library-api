@@ -15,14 +15,14 @@ import java.util.List;
 public class ManagerStudentController {
 
     @RequestMapping("/student")
-    public String ManageDetail(Model model){
-        String sql = "SELECT * FROM book";
-        DBManager dbManager = new DBManager(sql);
-        ResultSet result = null;
+    public String ManageDetail(Model model) {
+        String sql = "SELECT * FROM user";
         List<Student> studentList = new ArrayList<>();
         try {
+            DBManager dbManager = new DBManager(sql);
+            ResultSet result = null;
             result = dbManager.preparedStatement.executeQuery();
-            while (result.next()){
+            while (result.next()) {
                 Student student = new Student();
                 student.id = Integer.valueOf(result.getString("id"));
                 student.name = result.getString("name");
@@ -39,8 +39,7 @@ public class ManagerStudentController {
             }
             result.close();
             dbManager.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
         model.addAttribute("studentList", studentList);
