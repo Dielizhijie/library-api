@@ -43,6 +43,6 @@ public class ManagerStudentController {
 
         }
         model.addAttribute("studentList", studentList);
-        return "manager/student";
+        return "manager/student/student";
     }
 }
