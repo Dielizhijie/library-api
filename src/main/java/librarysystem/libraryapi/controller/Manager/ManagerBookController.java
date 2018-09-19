@@ -59,7 +59,15 @@ public class ManagerBookController {
     }
     @RequestMapping(value = "/book/detail/redirect/delete" ,method = RequestMethod.POST)
     public String ManageDetailDelete(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.valueOf(request.getParameter("editButton"));
-        return "redirect:/manager/book/detail/"+String.valueOf(id);
+        int id = Integer.valueOf(request.getParameter("deleteButton"));
+        String sql = "delete from book where id = " + id + ";";
+        try {
+            DBManager dbManager = new DBManager(sql);
+            dbManager.preparedStatement.executeUpdate();
+            dbManager.close();
+        } catch (Exception e) {
+            ErrorAlert.popAlert(response, "数据库访问出错，删除失败");
+        }
+        return "redirect:/manager/book/index";
     }
 }

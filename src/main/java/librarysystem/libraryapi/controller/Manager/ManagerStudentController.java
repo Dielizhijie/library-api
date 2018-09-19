@@ -2,10 +2,14 @@ package librarysystem.libraryapi.controller.Manager;
 
 import librarysystem.libraryapi.Bean.Student;
 import librarysystem.libraryapi.controller.tool.DBManager;
+import librarysystem.libraryapi.controller.tool.ErrorAlert;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +48,32 @@ public class ManagerStudentController {
         }
         model.addAttribute("studentList", studentList);
         return "manager/student/student";
+    }
+
+    @RequestMapping(value = "/student/restore" ,method = RequestMethod.POST)
+    public String ManageDetailEdit(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.valueOf(request.getParameter("restoreButton"));
+        String sql = "update user set card = 1 where id = " + id +  ";";
+        try {
+            DBManager dbManager = new DBManager(sql);
+            dbManager.preparedStatement.executeUpdate();
+            dbManager.close();
+        } catch (Exception e) {
+            ErrorAlert.popAlert(response, "数据库访问出错，删除失败");
+        }
+        return "redirect:/manager/student";
+    }
+    @RequestMapping(value = "/student/cancel" ,method = RequestMethod.POST)
+    public String ManageDetailDelete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.valueOf(request.getParameter("cancelButton"));
+        String sql = "update user set card = 0 where id = " + id +  ";";
+        try {
+            DBManager dbManager = new DBManager(sql);
+            dbManager.preparedStatement.executeUpdate();
+            dbManager.close();
+        } catch (Exception e) {
+            ErrorAlert.popAlert(response, "数据库访问出错，删除失败");
+        }
+        return "redirect:/manager/student";
     }
 }

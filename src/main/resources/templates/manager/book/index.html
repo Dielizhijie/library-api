@@ -110,7 +110,7 @@
                                                 </form>
                                                 <form action="/manager/book/detail/redirect/delete" method="post">
                                                     <td>
-                                                        <button type="submit" class="btn btn-danger">删除
+                                                        <button type="submit" class="btn btn-danger" th:name="deleteButton" th:value="${book.id}">删除
                                                         </button>
                                                     </td>
 
