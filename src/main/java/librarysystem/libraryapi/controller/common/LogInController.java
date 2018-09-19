@@ -1,16 +1,15 @@
 package librarysystem.libraryapi.controller.common;
 
-import com.sun.net.httpserver.spi.HttpServerProvider;
-import librarysystem.libraryapi.DBManager;
+import librarysystem.libraryapi.Bean.Manager;
+import librarysystem.libraryapi.Bean.User;
+import librarysystem.libraryapi.controller.tool.DBManager;
+import librarysystem.libraryapi.controller.tool.ErrorAlert;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 
 @Controller
@@ -27,64 +26,71 @@ public class LogInController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(HttpServletRequest httpServletRequest, Model model, HttpServletResponse response) {
+    public String login(HttpServletRequest httpServletRequest, HttpServletResponse response) {
         userName = httpServletRequest.getParameter("userName");
         password = httpServletRequest.getParameter("password");
         type = Integer.parseInt(httpServletRequest.getParameter("user_type"));
-        if (type == 0) {//学生
-            String sql = "SELECT password FROM user where user_id = " + userName+ ";";
-            DBManager dbManager = new DBManager(sql);
-            ResultSet result = null;
+        if (type == 0) {
+            //学生
+            String sql = "SELECT password FROM user where user_id = " + userName + ";";
+
+
             try {
+                DBManager dbManager = new DBManager(sql);
+                ResultSet result;
                 String DBpassword = null;
                 result = dbManager.preparedStatement.executeQuery();
                 while (result.next()) {
-
                     DBpassword = result.getString("password");
                 }
                 if (DBpassword.equals(password)) {
-//                    model.addAttribute("user_type", 0);
-//                    RequestDispatcher rd = httpServletRequest.getRequestDispatcher("student/index.html");
-//                    rd.forward(httpServletRequest,response);
                     result.close();
                     dbManager.close();
-                    return "redirect:/student/index";
+                    getUserDetail(userName, 0);
+                    return "redirect:/student/detail";
                 } else {//这还缺少一个提醒账号密码错误
-                    System.out.println("错了");
+                    ErrorAlert.popAlert(response,"密码错误");
                 }
-
             } catch (Exception e) {
-                System.out.println("e错了");
+                ErrorAlert.popAlert(response,"账号或账号类型错误");
             }
-        } else {
-            String sql = "SELECT user_id,password FROM manager";
-            DBManager dbManager = new DBManager(sql);
-            ResultSet result = null;
+        } else if (type == 1){
+            String sql = "SELECT password FROM manager where user_id = " + userName + ";";
+
             try {
+                DBManager dbManager = new DBManager(sql);
+                ResultSet result = null;
+                String DBpassword = null;
                 result = dbManager.preparedStatement.executeQuery();
-                String DBuserName = result.getString("user_id");
-                String DBpassword = result.getString("password");
-                if (DBuserName == userName && DBpassword == password) {
-                    model.addAttribute("user_type", 1);
-                } else {
-
+                while (result.next()) {
+                    DBpassword = result.getString("password");
                 }
-                result.close();
-                dbManager.close();
-            } catch (Exception e) {
+                if (DBpassword.equals(password)) {
+                    result.close();
+                    dbManager.close();
+                    getUserDetail(userName, 1);
+                    return "redirect:/manager/detail";
+                } else {
+                    ErrorAlert.popAlert(response,"密码错误");
+                }
 
+            } catch (Exception e) {
+                ErrorAlert.popAlert(response,"账号或账号类型错误");
             }
+        }else {
+            ErrorAlert.popAlert(response,"未输入用户类型");
         }
         return "/login";
     }
 
-//    public void popAlert() {
-//
-//        response.setCharacterEncoding("utf-8");
-//        PrintWriter out = response.getWriter();
-//        out.print("<script>alert('您还没有登录，请登录...'); window.location='userlogin.html' </script>");
-//        out.flush();
-//        out.close();
-//
-//    }
+    //当发生意外的时候弹出提
+
+    //当验证用户账号密码成功的时候把用户的个人信息存储下来
+    private void getUserDetail(String userName, int type) {
+        if (type == 0) {
+            Manager.getInstance().updateData(userName);
+        } else {
+            User.getInstance().updateData(userName);
+        }
+    }
 }

@@ -12,6 +12,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
+<<<<<<< HEAD
                 个人信息
                 <small>Preview page</small>
             </h1>
@@ -19,6 +20,15 @@
                 <li>HOME</li>
                 <li class="active">个人</li>
                 <li class="active">编辑</li>
+=======
+                管理员信息
+                <small>详情</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a><i class="fa fa-th"></i> Home</a></li>
+                <li><a>管理员信息</a></li>
+                <!--<li class="active">Data tables</li>-->
+>>>>>>> c3afbb611be342daaa9f38589936ef95857a0e8a
             </ol>
         </section>
         <section class="content">
@@ -26,6 +36,7 @@
                 <div class="col-md-4">
                     <div class="box box-info">
                         <div class="box-header">
+<<<<<<< HEAD
                             <h3 class="box-title">个人
                                 <small>Advanced and full of features</small>
                             </h3>
@@ -69,6 +80,33 @@
                             </div>
                         </form>
                         @endforeach
+=======
+                            <h3 class="box-title">管理员
+                                <small>manager</small>
+                            </h3>
+                        </div>
+                        <form id="mainform" action="/manager/detail/edit" method = "POST" enctype="multipart/form-data">
+
+                            <div class="box-body pad" style="display: block;">
+                                <div class="form-group" >
+                                    <label for="noticeTitle">姓名</label>
+                                    <input type="text" name = "name" class="form-control"  th:value = "${name}" >
+                                </div>
+                                <div class="form-group" >
+                                    <label for="noticeTitle">账号</label>
+                                    <input type="text" name = "user_id" class="form-control"  id="noticeTitle" th:value = "${user_id}" >
+                                </div>
+                                <div class="form-group" >
+                                    <label for="noticeTitle">密码</label>
+                                    <input type="text" name = "password" class="form-control"  th:value="${password}" >
+                                </div>
+                                <div class="box-footer">
+                                        <button id="submitButton3" type="submit" class="btn btn-info"
+                                                > 确认修改</button>
+                                </div>
+                            </div>
+                        </form>
+>>>>>>> c3afbb611be342daaa9f38589936ef95857a0e8a
 
                     </div>
                     <!-- /.box -->

@@ -1,7 +1,6 @@
 package librarysystem.libraryapi.controller.Manager;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import librarysystem.libraryapi.DBManager;
+import librarysystem.libraryapi.controller.tool.DBManager;
 import librarysystem.libraryapi.Bean.Book;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +17,10 @@ public class ManagerBookController {
     @RequestMapping("/book/index")
     public String index(Model model) {
         String sql = "SELECT * FROM book";
-        DBManager dbManager = new DBManager(sql);
-        ResultSet result = null;
         List<Book> bookList = new ArrayList<>();
         try {
+            DBManager dbManager = new DBManager(sql);
+            ResultSet result = null;
             result = dbManager.preparedStatement.executeQuery();
             while (result.next()) {
                 Book book = new Book();
