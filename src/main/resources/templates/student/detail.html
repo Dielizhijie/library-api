@@ -6,7 +6,7 @@
     <!--首部-->
     <header th:include="/student/common/header :: header" class="main-header"></header>
     <!--侧边栏-->
-    <aside th:include="/student/common/sidebar :: sidebar" class="main-sidebar" ></aside>
+    <aside th:include="/student/common/sidebar :: sidebar" class="main-sidebar"></aside>
 
     <div class="content-wrapper" style="min-height: 901px;">
         <!-- Content Header (Page header) -->
@@ -30,46 +30,49 @@
                                 <small>Advanced and full of features</small>
                             </h3>
                         </div>
-                        @foreach($student as $result)
-                        <form id="mainform" action="{{url('/student/edit/')}}" method = "POST" enctype="multipart/form-data">
-                            {{csrf_field()}}
+                        <form id="mainform" action="{{url('/student/edit/')}}" method="POST"
+                              enctype="multipart/form-data">
                             <div class="col-sm-6" style="float: right;">
                                 <div class="input-group input-group-sm" style="width: 500px;">
                                     <div class="input-group-btn">
                                         <button id="submitButton3" type="submit" class="btn btn-info"
-                                                onclick="confirm('确认修改？')"> 编辑</button>
+                                                onclick="confirm('确认修改？')"> 编辑
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="box-body pad" style="display: block;">
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <th><label for="noticeTitle">学号</label></th>&emsp;&emsp;&emsp;&emsp;&emsp;
-                                    <td>{{$result -> user_id}}</td>
+                                    <td th:text = "${user_id}"></td>
                                 </div>
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <label for="noticeTitle">name</label>
-                                    <input type="text" name = "name" class="form-control" id="noticeTitle" value="{{$result -> name}}">
+                                    <input type="text" name="name" class="form-control"
+                                           th:value="${name}">
                                 </div>
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <label for="noticeTitle">password</label>
-                                    <input type="password" name = "password" class="form-control" id="noticeTitle" value="{{$result -> password}}">
+                                    <input type="password" name="password" class="form-control"
+                                           th:value="${password}">
                                 </div>
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <label for="noticeTitle">电话</label>
-                                    <input type="text" name = "phone" class="form-control" id="noticeTitle" value="{{$result -> phone}}">
+                                    <input type="text" name="phone" class="form-control"
+                                           th:value="${phone}">
                                 </div>
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <label for="noticeTitle">学院</label>
-                                    <input type="text" name = "academy" class="form-control" id="noticeTitle" value="{{$result -> academy}}">
+                                    <input type="text" name="academy" class="form-control"
+                                           th:value="${academy}">
                                 </div>
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <label for="noticeTitle">专业</label>
-                                    <input type="text" name = "major" class="form-control" id="noticeTitle" value="{{$result -> major}}">
+                                    <input type="text" name="major" class="form-control" id="noticeTitle"
+                                           th:value="${major}">
                                 </div>
                             </div>
                         </form>
-                        @endforeach
-
                     </div>
                     <!-- /.box -->
                 </div>
@@ -82,21 +85,23 @@
                         <!-- /.box-header -->
                         <div class="box-body no-padding">
                             <table class="table">
-                                <tbody><tr>
+                                <tbody>
+                                <tr >
                                     <th>书名</th>
                                     <th>作者</th>
                                     <th>还书</th>
                                 </tr>
-                                @foreach($borrow as $result)
-                                <tr>
-                                    <td>{{$result -> name}}</td>
-                                    <td>{{$result ->author}}</td>
+                                <tr th:each="book: ${borrowBookList}">
+                                    <td th:text="${book.name}"></td>
+                                    <td th:text="${book.author}"></td>
                                     <td>
-                                        <a href="{{url('/student/book/borrow/'.$result->id)}}" ><button type="button" class="btn btn-warning">还书</button></a></td>
+                                        <form action="/student/book/detail/giveback" method="post">
+                                            <button type="submit" class="btn btn-warning" name = "givebackButton" th:value="${book.id}">还书</button>
+                                        </form>
                                     </td>
                                 </tr>
-                                @endforeach
-                                </tbody></table>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- /.box-body -->
                     </div>
@@ -109,26 +114,29 @@
                         <!-- /.box-header -->
                         <div class="box-body no-padding">
                             <table class="table">
-                                <tbody><tr>
+                                <tbody>
+                                <tr>
                                     <th>书名</th>
                                     <th>作者</th>
-                                    <th>可借数</th>
                                     <th>借书</th>
                                     <th>取消</th>
                                 </tr>
-                                @foreach($predetermine as $result)
-                                <tr>
-                                    <td>{{$result -> name}}</td>
-                                    <td>{{$result -> author}}</td>
-                                    <td>{{$result -> count - $result -> borrowing_count}}</td>
+                                <tr th:each="book: ${predetermineBookList}">
+                                    <td th:text="${book.name}"></td>
+                                    <td th:text="${book.author}"></td>
                                     <td>
-                                        <a href="{{url('/student/book/borrow/'.$result->id)}}" ><button type="button" class="btn btn-info">借阅</button></a></td>                                    </td>
+                                        <form action="/student/book/detail/borrow" method="post">
+                                            <button type="submit" class="btn btn-info" name = "borrowButton" th:value="${book.id}">借阅</button>
+                                        </form>
+                                    </td>
                                     <td>
-                                        <a href="{{url('/student/book/cancel/'.$result->id)}}" ><button type="button" class="btn btn-danger">取消</button></a></td>
+                                        <form action="/student/book/detail/cancel" method="post">
+                                            <button type="submit" class="btn btn-danger" name = "cancelButton" th:value="${book.id}">取消</button>
+                                        </form>
                                     </td>
                                 </tr>
-                                @endforeach
-                                </tbody></table>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- /.box-body -->
                     </div>
