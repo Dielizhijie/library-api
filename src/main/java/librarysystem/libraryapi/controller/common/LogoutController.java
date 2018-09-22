@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
 @Controller
-public class LogoutController {
+public class LogoutController {//登出函数
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logOut( HttpServletResponse response){
         Manager.getInstance().onLogout();

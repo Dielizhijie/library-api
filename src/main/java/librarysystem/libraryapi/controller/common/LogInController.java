@@ -24,7 +24,7 @@ public class LogInController {
         return "/login";
     }
 
-
+//登录的跳转链接
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest httpServletRequest, HttpServletResponse response) {
         userName = httpServletRequest.getParameter("userName");
@@ -33,8 +33,6 @@ public class LogInController {
         if (type == 0) {
             //学生
             String sql = "SELECT password FROM user where user_id = " + userName + ";";
-
-
             try {
                 DBManager dbManager = new DBManager(sql);
                 ResultSet result;
@@ -54,9 +52,8 @@ public class LogInController {
             } catch (Exception e) {
                 ErrorAlert.popAlert(response,"账号或账号类型错误");
             }
-        } else if (type == 1){
+        } else if (type == 1){//管理员登录界面
             String sql = "SELECT password FROM manager where user_id = " + userName + ";";
-
             try {
                 DBManager dbManager = new DBManager(sql);
                 ResultSet result = null;
@@ -73,7 +70,6 @@ public class LogInController {
                 } else {
                     ErrorAlert.popAlert(response,"密码错误");
                 }
-
             } catch (Exception e) {
                 ErrorAlert.popAlert(response,"账号或账号类型错误");
             }
@@ -82,8 +78,6 @@ public class LogInController {
         }
         return "/login";
     }
-
-    //当发生意外的时候弹出提
 
     //当验证用户账号密码成功的时候把用户的个人信息存储下来
     private void getUserDetail(String userName, int type) {

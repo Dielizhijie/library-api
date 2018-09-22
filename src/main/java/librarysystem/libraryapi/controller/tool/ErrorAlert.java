@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 public class ErrorAlert {
+    //跳转的部分
     public static void popAlert(HttpServletResponse response, String string,String url) {
         try {
             response.setCharacterEncoding("UTF-8");
@@ -21,6 +22,8 @@ public class ErrorAlert {
 
         }
     }
+
+    //不跳转的部分
     public static void popAlert(HttpServletResponse response, String string) {
         try {
             response.setCharacterEncoding("UTF-8");
