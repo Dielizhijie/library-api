@@ -11,7 +11,7 @@ public class ErrorAlert {
             response.setContentType("text/html;charset=utf-8");
             response.setHeader("content-type", "text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            if (url==null){
+            if (url == null){
                 out.print("<script>alert('" + string + "') ;</script>");
             }else{
                 out.print("<script>alert('" + string + "'); window.location='"+url+"' </script>");
