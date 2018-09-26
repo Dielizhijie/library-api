@@ -2,7 +2,7 @@ package librarysystem.libraryapi.controller.Manager;
 
 import librarysystem.libraryapi.Bean.Manager;
 import librarysystem.libraryapi.controller.tool.DBManager;
-import librarysystem.libraryapi.controller.tool.ErrorAlert;
+import librarysystem.libraryapi.controller.tool.Alert;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.ResultSet;
 
 @Controller
 @RequestMapping("/manager")
@@ -26,7 +25,7 @@ public class ManagerDetailController {
 
     @RequestMapping(value = "/detail/edit", method = RequestMethod.POST)
     public String ManageDetail(HttpServletResponse response, HttpServletRequest request){
-//        ErrorAlert.popAlert(response,"您确定要修改吗",null);
+//        Alert.popAlert(response,"您确定要修改吗",null);
         String newName = request.getParameter("name");
         String newUserID = request.getParameter("user_id");
         String newPassword = request.getParameter("password");
@@ -39,10 +38,10 @@ public class ManagerDetailController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
             Manager.getInstance().updateData(newUserID);
-//            ErrorAlert.popAlert(response,"修改成功！",null);
+//            Alert.popAlert(response,"修改成功！",null);
         }
         catch (Exception e){
-            ErrorAlert.popAlert(response,"数据库访问出错，修改失败");
+            Alert.popErrorAlert(response,"数据库访问出错，修改失败");
         }
         return "manager/detail";
     }

@@ -1,10 +1,9 @@
 package librarysystem.libraryapi.controller.User;
 
-import librarysystem.libraryapi.Bean.Book;
 import librarysystem.libraryapi.Bean.BorrowBook;
 import librarysystem.libraryapi.Bean.User;
 import librarysystem.libraryapi.controller.tool.DBManager;
-import librarysystem.libraryapi.controller.tool.ErrorAlert;
+import librarysystem.libraryapi.controller.tool.Alert;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -120,7 +119,7 @@ public class UserDetailController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
         return "redirect:/student/detail";
     }
@@ -134,7 +133,7 @@ public class UserDetailController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
         return "redirect:/student/detail";
     }
@@ -148,7 +147,7 @@ public class UserDetailController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
         return "redirect:/student/detail";
     }

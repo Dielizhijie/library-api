@@ -1,9 +1,8 @@
 package librarysystem.libraryapi.controller.Manager;
 
-import librarysystem.libraryapi.Bean.Manager;
+import librarysystem.libraryapi.controller.tool.Alert;
 import librarysystem.libraryapi.controller.tool.DBManager;
 import librarysystem.libraryapi.Bean.Book;
-import librarysystem.libraryapi.controller.tool.ErrorAlert;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +65,7 @@ public class ManagerBookController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错，删除失败");
+            Alert.popErrorAlert(response, "数据库访问出错，删除失败");
         }
         return "redirect:/manager/book/index";
     }

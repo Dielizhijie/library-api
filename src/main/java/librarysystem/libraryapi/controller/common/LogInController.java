@@ -2,8 +2,8 @@ package librarysystem.libraryapi.controller.common;
 
 import librarysystem.libraryapi.Bean.Manager;
 import librarysystem.libraryapi.Bean.User;
+import librarysystem.libraryapi.controller.tool.Alert;
 import librarysystem.libraryapi.controller.tool.DBManager;
-import librarysystem.libraryapi.controller.tool.ErrorAlert;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,10 +47,10 @@ public class LogInController {
                     getUserDetail(userName, 0);
                     return "redirect:/student/detail";
                 } else {//这还缺少一个提醒账号密码错误
-                    ErrorAlert.popAlert(response,"密码错误");
+                    Alert.popErrorAlert(response,"密码错误");
                 }
             } catch (Exception e) {
-                ErrorAlert.popAlert(response,"账号或账号类型错误");
+                Alert.popErrorAlert(response,"账号或账号类型错误");
             }
         } else if (type == 1){//管理员登录界面
             String sql = "SELECT password FROM manager where user_id = " + userName + ";";
@@ -68,13 +68,13 @@ public class LogInController {
                     getUserDetail(userName, 1);
                     return "redirect:/manager/detail";
                 } else {
-                    ErrorAlert.popAlert(response,"密码错误");
+                    Alert.popErrorAlert(response,"密码错误");
                 }
             } catch (Exception e) {
-                ErrorAlert.popAlert(response,"账号或账号类型错误");
+                Alert.popErrorAlert(response,"账号或账号类型错误");
             }
         }else {
-            ErrorAlert.popAlert(response,"未输入用户类型");
+            Alert.popErrorAlert(response,"未输入用户类型");
         }
         return "/login";
     }

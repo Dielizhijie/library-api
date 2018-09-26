@@ -2,8 +2,8 @@ package librarysystem.libraryapi.controller.User;
 
 import librarysystem.libraryapi.Bean.Book;
 import librarysystem.libraryapi.Bean.User;
+import librarysystem.libraryapi.controller.tool.Alert;
 import librarysystem.libraryapi.controller.tool.DBManager;
-import librarysystem.libraryapi.controller.tool.ErrorAlert;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,7 +62,7 @@ public class UserBookController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
         String sql2 = "select borrowing_count,predetermine_count from book where id = " + id + ";";
         try {
@@ -75,7 +75,7 @@ public class UserBookController {
             result.close();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
         String sql3 = "update book set borrowing_count = " + (borrowingCount + 1) + " ,predetermine_count =" + (predetermineCount) + " where id = " + id + ";";
         try {
@@ -83,8 +83,9 @@ public class UserBookController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
+        Alert.popAlert(response,"借书成功","/student/book");
         return "redirect:/student/book";
     }
 
@@ -98,7 +99,7 @@ public class UserBookController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
         String sql2 = "select borrowing_count,predetermine_count from book where id = " + id + ";";
         try {
@@ -111,7 +112,7 @@ public class UserBookController {
             result.close();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
         String sql3 = "update book set borrowing_count = " + (borrowingCount) + " ,predetermine_count =" + (predetermineCount + 1) + " where id = " + id + ";";
         try {
@@ -119,8 +120,9 @@ public class UserBookController {
             dbManager.preparedStatement.executeUpdate();
             dbManager.close();
         } catch (Exception e) {
-            ErrorAlert.popAlert(response, "数据库访问出错");
+            Alert.popErrorAlert(response, "数据库访问出错");
         }
+        Alert.popAlert(response,"预定成功","/student/book");
         return "redirect:/student/book";
     }
 }
