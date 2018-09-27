@@ -41,9 +41,16 @@
                                         </select> entries</label></div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <div id="example1_filter" class="dataTables_filter"><label>Search:<input
-                                                type="search" class="form-control input-sm" placeholder=""
-                                                aria-controls="example1"></label></div>
+                                        <div id="example1_filter" class="dataTables_filter">
+                                            <form action="/student/book/borrow" method="post">
+                                                <label>Search:<input
+                                                        type="search" class="form-control input-sm" placeholder=""
+                                                        aria-controls="example1" th:name="input" >
+                                                    <button type="submit" class="btn btn-danger" name="search"></button>
+                                                </label>
+                                            </form>
+
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">

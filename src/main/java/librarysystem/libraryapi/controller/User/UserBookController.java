@@ -125,4 +125,41 @@ public class UserBookController {
         Alert.popAlert(response,"预定成功","/student/book");
         return "redirect:/student/book";
     }
+
+    @RequestMapping(value = "/book/search", method = RequestMethod.POST)
+    public String studentSearch(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.valueOf(request.getParameter("borrowButton"));
+        int borrowingCount = 0, predetermineCount = 0;
+        String sql = "insert into borrow (user_id,bid) values (" + User.getInstance().id + "," + id + ");";
+        try {
+            DBManager dbManager = new DBManager(sql);
+            dbManager.preparedStatement.executeUpdate();
+            dbManager.close();
+        } catch (Exception e) {
+            Alert.popErrorAlert(response, "数据库访问出错");
+        }
+        String sql2 = "select borrowing_count,predetermine_count from book where id = " + id + ";";
+        try {
+            DBManager dbManager = new DBManager(sql2);
+            ResultSet result = result = dbManager.preparedStatement.executeQuery();
+            while (result.next()) {
+                borrowingCount = Integer.parseInt(result.getString("borrowing_count"));
+                predetermineCount = Integer.parseInt(result.getString("predetermine_count"));
+            }
+            result.close();
+            dbManager.close();
+        } catch (Exception e) {
+            Alert.popErrorAlert(response, "数据库访问出错");
+        }
+        String sql3 = "update book set borrowing_count = " + (borrowingCount + 1) + " ,predetermine_count =" + (predetermineCount) + " where id = " + id + ";";
+        try {
+            DBManager dbManager = new DBManager(sql3);
+            dbManager.preparedStatement.executeUpdate();
+            dbManager.close();
+        } catch (Exception e) {
+            Alert.popErrorAlert(response, "数据库访问出错");
+        }
+        Alert.popAlert(response,"借书成功","/student/book");
+        return "redirect:/student/book";
+    }
 }
