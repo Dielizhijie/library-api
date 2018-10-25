@@ -28,7 +28,6 @@ public class User {
         return instance;
     }
 
-    //这里使用了建造者模式
     public User setID(int id){
         this.id = id;
         return instance;
@@ -88,6 +87,7 @@ public class User {
                 .setCard(0)
                 .setCredit(0);
     }
+
     public void updateData(String userName){
         String sql = "SELECT * FROM manager where user_id = " + userName + ";";
 
